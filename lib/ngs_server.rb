@@ -1,0 +1,3 @@
+module NgsServer
+  # Your code goes here...
+end
