@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG -dynamiclib -Wl,-headerpad_max_install_names -compatibility_version 1.0.0 -o ../../../lib/libjsoncpp.1.0.0.dylib -install_name /Users/chase/Desktop/tmp_workspace/ngs_server/ext/bamtools/lib/libjsoncpp.1.0.0.dylib CMakeFiles/jsoncpp.dir/json_reader.cpp.o CMakeFiles/jsoncpp.dir/json_value.cpp.o CMakeFiles/jsoncpp.dir/json_writer.cpp.o 

@@ -10,12 +10,14 @@ Gem::Specification.new do |s|
   s.email       = ["chmille4@gmail.com"]
   s.homepage    = ""
   s.summary     = %q{"Ultra Lightweight NGS Data Server"}
-  s.description = %q{"TODO"}
+  s.description = %q{"Converts BAM/VCF files into JSON for consumption by web apps"}
 
   s.rubyforge_project = "ngs_server"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+#  s.executables   = "ext/bamtools/bin/bamtools"
+  s.extensions    = ["ext/bamtools/extconf.rb"]
   s.require_paths = ["lib"]
 end
