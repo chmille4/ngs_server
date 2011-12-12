@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svnroot/vcftools/!svn/ver/620/cpp
+END
+vcf_entry.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/vcftools/!svn/ver/611/cpp/vcf_entry.cpp
+END
+dgeev.h
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svnroot/vcftools/!svn/ver/508/cpp/dgeev.h
+END
+vcftools.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/vcftools/!svn/ver/620/cpp/vcftools.cpp
+END
+output_log.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/vcftools/!svn/ver/457/cpp/output_log.cpp
+END
+parameters.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/vcftools/!svn/ver/620/cpp/parameters.cpp
+END
+vcf_entry.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/vcftools/!svn/ver/546/cpp/vcf_entry.h
+END
+vcf_file_index.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/vcftools/!svn/ver/584/cpp/vcf_file_index.cpp
+END
+vcftools.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/vcftools/!svn/ver/259/cpp/vcftools.h
+END
+vcf_file_filters.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/vcftools/!svn/ver/619/cpp/vcf_file_filters.cpp
+END
+vcf_file_diff.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/vcftools/!svn/ver/555/cpp/vcf_file_diff.cpp
+END
+output_log.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/vcftools/!svn/ver/457/cpp/output_log.h
+END
+vcf_entry_setters.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/vcftools/!svn/ver/612/cpp/vcf_entry_setters.cpp
+END
+parameters.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/vcftools/!svn/ver/620/cpp/parameters.h
+END
+vcf_file.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/vcftools/!svn/ver/620/cpp/vcf_file.cpp
+END
+vcf_file.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/vcftools/!svn/ver/620/cpp/vcf_file.h
+END
+vcf_file_format_convert.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/vcftools/!svn/ver/547/cpp/vcf_file_format_convert.cpp
+END
+dgeev.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svnroot/vcftools/!svn/ver/508/cpp/dgeev.cpp
+END
+vcf_entry_getters.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/vcftools/!svn/ver/612/cpp/vcf_entry_getters.cpp
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svnroot/vcftools/!svn/ver/575/cpp/Makefile
+END
+vcf_file_output.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/vcftools/!svn/ver/620/cpp/vcf_file_output.cpp
+END

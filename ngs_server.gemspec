@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-#  s.executables   = "ext/bamtools/bin/bamtools"
-  s.extensions    = ["ext/bamtools/extconf.rb"]
+#  s.executables   = "bin/ngs_"
+  s.extensions    = ["ext/bamtools/extconf.rb", "ext/vcftools/extconf.rb"]
   s.require_paths = ["lib"]
 end

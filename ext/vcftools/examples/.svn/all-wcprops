@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svnroot/vcftools/!svn/ver/601/examples
+END
+annotate.out
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/vcftools/!svn/ver/565/examples/annotate.out
+END
+perl-api-1.pl
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/vcftools/!svn/ver/415/examples/perl-api-1.pl
+END
+subset.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/vcftools/!svn/ver/348/examples/subset.vcf
+END
+shuffle-test.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/vcftools/!svn/ver/403/examples/shuffle-test.vcf
+END
+cmp-test-a.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/vcftools/!svn/ver/397/examples/cmp-test-a.vcf
+END
+annotate.txt
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/vcftools/!svn/ver/565/examples/annotate.txt
+END
+cmp-test-b.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/vcftools/!svn/ver/397/examples/cmp-test-b.vcf
+END
+cmp-test-a-3.3.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/vcftools/!svn/ver/397/examples/cmp-test-a-3.3.vcf
+END
+query-test.out
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/vcftools/!svn/ver/325/examples/query-test.out
+END
+subset.indels.out
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/vcftools/!svn/ver/348/examples/subset.indels.out
+END
+cmp-test-b-3.3.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/vcftools/!svn/ver/397/examples/cmp-test-b-3.3.vcf
+END
+subset.SNPs.out
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/vcftools/!svn/ver/348/examples/subset.SNPs.out
+END
+merge-test.vcf.out
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/vcftools/!svn/ver/560/examples/merge-test.vcf.out
+END
+isec-n2-test.vcf.out
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/vcftools/!svn/ver/486/examples/isec-n2-test.vcf.out
+END
+annotate2.out
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/vcftools/!svn/ver/601/examples/annotate2.out
+END
+invalid-4.0.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/vcftools/!svn/ver/270/examples/invalid-4.0.vcf
+END
+concat-a.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/vcftools/!svn/ver/565/examples/concat-a.vcf
+END
+cmp-test.out
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/vcftools/!svn/ver/596/examples/cmp-test.out
+END
+annotate3.out
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/vcftools/!svn/ver/565/examples/annotate3.out
+END
+concat-b.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/vcftools/!svn/ver/342/examples/concat-b.vcf
+END
+annotate-test.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/vcftools/!svn/ver/466/examples/annotate-test.vcf
+END
+concat-c.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/vcftools/!svn/ver/342/examples/concat-c.vcf
+END
+merge-test-a.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/vcftools/!svn/ver/486/examples/merge-test-a.vcf
+END
+merge-test-b.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/vcftools/!svn/ver/486/examples/merge-test-b.vcf
+END
+valid-4.0.vcf.stats
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/vcftools/!svn/ver/601/examples/valid-4.0.vcf.stats
+END
+merge-test-c.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/vcftools/!svn/ver/325/examples/merge-test-c.vcf
+END
+valid-4.0.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/vcftools/!svn/ver/549/examples/valid-4.0.vcf
+END
+valid-4.1.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/vcftools/!svn/ver/596/examples/valid-4.1.vcf
+END
+concat.out
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/vcftools/!svn/ver/565/examples/concat.out
+END
+valid-3.3.vcf
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/vcftools/!svn/ver/234/examples/valid-3.3.vcf
+END

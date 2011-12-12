@@ -1,0 +1,103 @@
+#!/usr/bin/env perl
+#
+# Notes:
+#   * The AA files can be downloaded from ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/pilot_data/technical/reference/ancestral_alignments
+#   * The program runs samtools, therefore the AA files must be gzipped (not b2zipped).
+#
+# support: pd3@sanger
+
+use strict;
+use warnings;
+use Carp;
+use Vcf;
+use FindBin;
+use lib "$FindBin::Bin";
+use FaSlice;
+
+my $opts = parse_params();
+fill_aa($opts,$$opts{aa_file});
+
+exit;
+
+#--------------------------------
+
+sub error
+{
+    my (@msg) = @_;
+    if ( scalar @msg ) { confess @msg; }
+    die
+        "Usage: fill-aa [OPTIONS] < in.vcf >out.vcf\n",
+        "Options:\n",
+        "   -a, --ancestral-allele <prefix>     Prefix to ancestral allele chromosome files.\n",
+        "   -h, -?, --help                      This help message.\n",
+        "Example:\n",
+        "   (zcat file.vcf | grep ^#; zcat file.vcf | grep -v ^# | sort -k 1,1d -k 2,2n;) | fill-aa -a human_ancestor_ 2>test.err | gzip -c >out.vcf.gz \n",
+        "\n";
+}
+
+
+sub parse_params
+{
+    my $opts = {};
+    while (my $arg=shift(@ARGV))
+    {
+        if ( $arg eq '-a' || $arg eq '--ancestral-allele' ) { $$opts{aa_file} = shift(@ARGV); next }
+        if ( $arg eq '-?' || $arg eq '-h' || $arg eq '--help' ) { error(); }
+        error("Unknown parameter \"$arg\". Run -h for help.\n");
+    }
+    if ( !exists($$opts{aa_file}) ) { error("Missing the -a option.\n") }
+    return $opts;
+}
+
+
+sub fill_aa
+{
+    my ($opts,$aa_fname) = @_;
+
+    my $n_unknown = 0;
+    my $n_filled   = 0;
+
+    my $vcf = Vcf->new(fh=>\*STDIN);
+    $vcf->parse_header();
+    $vcf->add_header_line({key=>'INFO',ID=>'AA',Number=>1,Type=>'String',
+        Description=>'Ancestral Allele, ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/pilot_data/technical/reference/ancestral_alignments/README'});
+    print $vcf->format_header();
+
+    my $fa;
+    while (my $rec = $vcf->next_data_hash())
+    {
+        my $chr = $$rec{CHROM};
+        my $pos = $$rec{POS};
+
+        my $fname = $aa_fname;
+        if ( ! -e $fname )
+        {
+            if ( -e "$fname$chr.fa.gz" ) { $fname = "$fname$chr.fa.gz"; }
+            else { error(qq[Neither "$fname" nor "$fname$chr.fa.gz" exists.\n]); }
+        }
+        if ( !$fa or $$fa{file} ne $fname )
+        {
+            $fa = FaSlice->new(file=>$fname, size=>100_000);
+        }
+
+        my $aa = $fa->get_base($chr,$pos);
+
+        if ( $aa )
+        {
+            $$rec{$$vcf{columns}[7]}{AA} = $aa;
+            $n_filled++;
+        }
+        else
+        {
+            $$rec{$$vcf{columns}[7]}{AA} = '.';
+            $n_unknown++;
+        }
+        print $vcf->format_line($rec);
+    }
+
+    print STDERR 
+        "No AAs        .. $n_unknown\n",
+        "AAs filled    .. $n_filled\n";
+}
+
+

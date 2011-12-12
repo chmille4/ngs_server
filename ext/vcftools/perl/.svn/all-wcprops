@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svnroot/vcftools/!svn/ver/618/perl
+END
+test.t
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svnroot/vcftools/!svn/ver/601/perl/test.t
+END
+FaSlice.pm
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/vcftools/!svn/ver/618/perl/FaSlice.pm
+END
+vcf-query
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/vcftools/!svn/ver/536/perl/vcf-query
+END
+vcf-subset
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/vcftools/!svn/ver/578/perl/vcf-subset
+END
+vcf-concat
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/vcftools/!svn/ver/512/perl/vcf-concat
+END
+fill-ref-md5
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/vcftools/!svn/ver/502/perl/fill-ref-md5
+END
+vcf-fix-newlines
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/vcftools/!svn/ver/535/perl/vcf-fix-newlines
+END
+vcf-annotate
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/vcftools/!svn/ver/617/perl/vcf-annotate
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/vcftools/!svn/ver/486/perl/ChangeLog
+END
+Vcf.pm
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svnroot/vcftools/!svn/ver/617/perl/Vcf.pm
+END
+vcf-convert
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/vcftools/!svn/ver/341/perl/vcf-convert
+END
+vcf-isec
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svnroot/vcftools/!svn/ver/606/perl/vcf-isec
+END
+vcf-validator
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/vcftools/!svn/ver/449/perl/vcf-validator
+END
+vcf-compare
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/vcftools/!svn/ver/617/perl/vcf-compare
+END
+tab-to-vcf
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/vcftools/!svn/ver/579/perl/tab-to-vcf
+END
+vcf-to-tab
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/vcftools/!svn/ver/544/perl/vcf-to-tab
+END
+fill-an-ac
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/vcftools/!svn/ver/341/perl/fill-an-ac
+END
+vcf-sort
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svnroot/vcftools/!svn/ver/403/perl/vcf-sort
+END
+fill-aa
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svnroot/vcftools/!svn/ver/341/perl/fill-aa
+END
+vcf-shuffle-cols
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/vcftools/!svn/ver/341/perl/vcf-shuffle-cols
+END
+VcfStats.pm
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/vcftools/!svn/ver/476/perl/VcfStats.pm
+END
+vcf-stats
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/vcftools/!svn/ver/477/perl/vcf-stats
+END
+vcf-merge
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/vcftools/!svn/ver/608/perl/vcf-merge
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svnroot/vcftools/!svn/ver/601/perl/Makefile
+END
