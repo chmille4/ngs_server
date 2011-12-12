@@ -1,0 +1,12 @@
+ifndef PREFIX
+    export PREFIX = $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
+endif
+export BINDIR = ${PREFIX}/bin
+export MODDIR = ${PREFIX}/lib
+
+DIRS = cpp perl
+install:
+	    @mkdir -p $(BINDIR); mkdir -p $(MODDIR);         for dir in $(DIRS); do cd $$dir && $(MAKE) $(MAKEFLAGS) && cd ..; done
+
+clean:
+		@for dir in $(DIRS); do cd $$dir && $(MAKE) clean && cd ..; done
