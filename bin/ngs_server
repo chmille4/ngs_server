@@ -1,71 +1,81 @@
 #!/usr/bin/env ruby
-
-# command = ARGV[0]
-# 
-# gempath = `gem env gempath`.split(':')[0]
-# 
-# gempath += '/gems/ngs_server-0.1'
-# 
-# # puts command
-# # if command == 'start'
-#   puts 'here'
+  require 'optparse'
+#  require 'sinatra'
   
+  path = File.dirname(__FILE__)
   
-  $:.unshift File.join(File.dirname(__FILE__), "../lib")
+  $:.unshift File.join(path, "../lib")
 
   require 'Ngs_server'
   
-  NgsServer.run!
+  require 'ngs_server/version'
+  require 'ngs_server/add'
   
-  # require 'rubygems'
-  # require 'sinatra'
-  # require 'json'
-  # 
-  # puts"in bin bin"
-  # 
-  # set :public, '.'
-  # set :port, "4569"
-  # 
-  # gempath = '.'
-  # bamtools_path = "#{gempath}/ext/bamtools/bin/bamtools"
-  # vcftools_path = "~/Tools/vcftools_0.1.7/bin/vcf-query"
-  # 
-  # 
-  # get '/json/bam/*' do |path|
-  # 
-  #   content_type :json
-  #   response['Access-Control-Allow-Origin'] = '*';
-  # 
-  #   # invoke with eg: base_url/json/bam/file=subset22-sorted.bam?min=30000000&max=30010000&segment=22   
-  #   json = `#{bamtools_path} convert -in data/#{path} -format json -region #{params["segment"]}:#{params["min"]}..#{params["max"]}`
-  #   json       
-  # 
-  # end
-  # 
-  # get '/json/vcf/*' do |path|
-  # 
-  #   content_type :json
-  #   response['Access-Control-Allow-Origin'] = '*';
-  # 
-  #   # invoke with eg: base_url/json/vcf/file=ALL.2of4intersection.20100804.sites.vcf.gz?min=6992179&max=6992190&segment=1
-  #   json = `#{vcftools_path} data/#{path} #{params["segment"]}:#{params["min"]}-#{params["max"]} -f '{"reference":"%CHROM","position":%POS,"ref":"%REF","alt":"%ALT","info":%INFO},'`
-  #   json
-  # 
-  # end
-  # 
-  # get '/json/sources/:extension' do
-  # 
-  #   content_type :json
-  #   response['Access-Control-Allow-Origin'] = '*';
-  # 
-  #   # invoke with eg: base_url/json/vcf/file=ALL.2of4intersection.20100804.sites.vcf.gz?min=6992179&max=6992190&segment=1
-  #   list = `find -L data -name *#{params['extension']} | awk -F/ '{ for(i=2; i<NF; i++) {printf("%s/", $i)} print $NF }'`
-  #   list
-  # 
-  # end
 
+  options = {}
+  command = ""
+
+  optparse = OptionParser.new do |opts|
+    opts.banner = "Usage: ngs_server start|stop|add [options]"
+    
+    opts.on( '-h', '--help', 'display this screen' ) do
+        # puts "ngs_server command options"
+        # puts "ngs_server start"
+        
+        puts opts
+        puts "Examples:"
+        puts "\tngs_server start"
+        puts "\tngs_server start -p 4567 -d"
+        puts "\tngs_server add path_to_data_directory"
+        puts "\tngs_server stop"
+        exit
+    end
+    
+    options[:port] = '4569'    
+    opts.on( '-p', '--port', 'specifies to port to listen on' ) do |f|
+        options[:port] = f
+    end
+    
+    options[:daemonize] = ""
+    opts.on( '-d', '--daemonize', 'runs process in the background' ) do
+        options[:daemonize] = "-d";
+    end
+    
+    # opts.on( '-C', '--config', 'configuration file for Thin server' ) do |f|
+    #     options[:config] = f;
+    # end
+    
+  end
+
+  optparse.parse!
   
-# elsif command == 'add-data'
-#   
-#   
-# end
+  command = ARGV[0]
+  
+  
+  
+  if (command == 'start')
+   # ngsrun options
+   rackup_path = File.join(path, '../lib/config.ru')
+   puts ">> NGS web server (version " + NgsServer::VERSION + ")"
+   if (options[:daemonize] == '-d')
+     puts ">> Listening on 0.0.0.0:" + options[:port]
+   else
+     puts ">> Listening on 0.0.0.0:" + options[:port] + ", CTRL+C to stop"
+   end
+   `thin -R #{rackup_path} -p #{options[:port]} #{options[:daemonize]} start`
+
+   #NgsServer.run!
+  elsif (command == 'stop')
+    rackup_path = File.join(path, '../lib/config.ru')
+    `thin -R #{rackup_path} -p #{options[:port]} stop`
+  elsif (command == 'add')
+    # source_path = File.absolute_path(ARGV[1])
+    # puts source_path
+    # file_name = File.basename(source_path)
+    # puts file_name
+    # data_dir_path = File.join(path,'../data', file_name)
+    # puts data_dir_path
+    # `ln -s #{source_path} #{data_dir_path}`
+    ngsadd ARGV[1]
+  end
+  

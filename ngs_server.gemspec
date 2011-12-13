@@ -11,6 +11,8 @@ Gem::Specification.new do |s|
   s.homepage    = ""
   s.summary     = %q{"Ultra Lightweight NGS Data Server"}
   s.description = %q{"Converts BAM/VCF files into JSON for consumption by web apps"}
+  s.add_dependency('thin')
+  s.add_dependency('rack', '>= 1')
 
   s.rubyforge_project = "ngs_server"
 

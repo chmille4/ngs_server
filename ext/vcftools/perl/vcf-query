@@ -161,6 +161,7 @@ sub read_data
 
     my @cols = split(/,/,$$opts{columns});
     if ( !@cols ) { @cols = @{get_columns($$opts{vcf})}; }
+    
 
     # The hash opts will be filled with the keys 'before','repeat','after' with formatting information
     parse_format($opts);
@@ -168,19 +169,21 @@ sub read_data
     while (my $line=$vcf->next_line())
     {
         my $x=$vcf->next_data_hash($line);
-
+        
         # Fill everything what comes before the repeat []
         # Code repetition and not very nice, should be changed at some point...
         if ( $$opts{before} )
         {
             my (@out) = copy_array($$opts{before}{format});
+
             while (my ($colname,$idx) = each %{$$opts{before}{idx}})
             {
-                if ( $colname eq 'LINE' ) { chomp($line); $out[$idx] = $line; next; }
+                if ( $colname eq 'LINE' ) { chomp($line); $out[$idx] = "$line"; next; }
                 if ( $colname eq 'ALT' ) { $out[$idx] = join(',',@{$$x{ALT}}); next; }
                 if ( $colname eq 'FILTER' ) { $out[$idx] = join(';',@{$$x{FILTER}}); next; }
+
                 if ( $colname=~m{INFO/(.+)} ) 
-                { 
+                {  
                     if ( exists($$x{INFO}{$1}) && !defined($$x{INFO}{$1}) )
                     {
                         # It is a flag
@@ -188,13 +191,24 @@ sub read_data
                     }
                     else
                     {
-                        $out[$idx] = $$x{INFO}{$1}; 
+                        $out[$idx] = $$x{INFO}{$1};                        
                     }
                     next; 
                 }
                 if ( exists($$x{$colname}) ) { $out[$idx] = $$x{$colname}; }
             }
-            for (my $i=0; $i<@out; $i++) { if (!defined($out[$i])) { $out[$i]='.'; } }
+            for (my $i=0; $i<@out; $i++) { 
+               if (!defined($out[$i])) { $out[$i]='.'; } 
+               if( 'HASH' eq ref $out[$i] ) {
+                  my $info_str = "{";
+                  while( my ($k, $v) = each %{$out[$i]} ) {
+                     if ($info_str ne "{") {$info_str .= ',';}
+                     $info_str .= '"' . $k . '"' . ":" . '"' . $v . '"';
+                          #print "key: $k, value: $v.\n";
+                  }
+                  $out[$i] = $info_str . "}";
+               }
+            }
             print join('',@out);
         }
 
