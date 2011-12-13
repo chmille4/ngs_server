@@ -1,10 +1,14 @@
-require'sinatra/base'
+require 'rubygems'
+require 'sinatra'
+require 'sinatra/base'
 
-class Myserver < Sinatra::Base  
+
+class MyNgsServer < Sinatra::Base
+  set :server, 'thin'
   #set :run, true
-  set :public, '.'
+  #set :public, '.'
  # set :port, opts[:port]
- set :port, 4569
+ #set :port, 4569
 #  set :daemonize, opts[:daemonize]
 #  set :daemonize, true
 
@@ -47,5 +51,5 @@ class Myserver < Sinatra::Base
 
   end
 
-  
-end
+end  
+

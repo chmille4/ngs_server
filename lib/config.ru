@@ -1,5 +1,9 @@
 require 'rubygems'
 
-require 'Ngs_server'
+$:.unshift File.join(File.dirname(__FILE__), "../lib")
+require 'ngs_server'
 
-run Sinatra::Application
+
+
+run MyNgsServer
+#NgsServer.run!

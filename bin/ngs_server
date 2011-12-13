@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
   require 'optparse'
-#  require 'sinatra'
   
   path = File.dirname(__FILE__)
   
@@ -8,6 +7,7 @@
 
   require 'Ngs_server'
   
+
   require 'ngs_server/version'
   require 'ngs_server/add'
   
@@ -32,7 +32,7 @@
     end
     
     options[:port] = '4569'    
-    opts.on( '-p', '--port', 'specifies to port to listen on' ) do |f|
+    opts.on( '-p', '--port PORT', 'specifies to port to listen on' ) do |f|
         options[:port] = f
     end
     
@@ -46,13 +46,12 @@
     # end
     
   end
-
-  optparse.parse!
   
+  optparse.parse!
   command = ARGV[0]
   
   
-  
+
   if (command == 'start')
    # ngsrun options
    rackup_path = File.join(path, '../lib/config.ru')
