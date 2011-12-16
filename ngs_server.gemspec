@@ -4,7 +4,7 @@ require "ngs_server/version"
 
 Gem::Specification.new do |s|
   s.name        = "ngs_server"
-  s.version     = NgsServer::VERSION
+  s.version     = "0.2.1"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Chase Miller"]
   s.email       = ["chmille4@gmail.com"]
