@@ -61,3 +61,5 @@ cleanlocal:
 		rm -fr gmon.out *.o a.out *.dSYM $(PROG) *~ *.a tabix.aux tabix.log tabix.pdf *.class libtabix.*.dylib libtabix.so*
 
 clean:cleanlocal-recur
+   
+install:

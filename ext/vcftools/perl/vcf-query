@@ -6,6 +6,8 @@
 use strict;
 use warnings;
 use Carp;
+use FindBin;
+use lib "$FindBin::Bin/../perl";
 use Vcf;
 
 my $opts = parse_params();

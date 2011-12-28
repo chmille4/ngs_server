@@ -72,6 +72,7 @@ use Carp;
 use Exporter;
 use Data::Dumper;
 use POSIX ":sys_wait_h";
+use FindBin;
 
 use vars qw/@ISA @EXPORT/;
 @ISA = qw/Exporter/;
@@ -157,6 +158,7 @@ sub new
     $$self{has_header} = 0;
     $$self{default_version} = '4.1';
     $$self{versions} = [ qw(Vcf3_2 Vcf3_3 Vcf4_0 Vcf4_1) ];
+    $$self{tabix} = "$FindBin::RealBin/../../tabix/tabix";
     if ( !exists($$self{max_line_len}) && exists($ENV{MAX_VCF_LINE_LEN}) ) { $$self{max_line_len} = $ENV{MAX_VCF_LINE_LEN} }
     $$self{fix_v40_AGtags} = $ENV{DONT_FIX_VCF40_AG_TAGS} ? 0 : 1;
     my %open_args = ();
@@ -203,7 +205,7 @@ sub _open
         {
             if ( exists($args{region}) && defined($args{region}) )
             {
-                $cmd = "tabix $tabix_args |";
+                $cmd = "$$self{tabix} $tabix_args |";
             }
             else { $cmd = "gunzip -c $$self{file} |"; } 
             $$self{check_exit_status} = 1;
@@ -211,7 +213,7 @@ sub _open
         elsif ( $$self{file}=~m{^(?:http|ftp)://} )
         {
             if ( !exists($args{region}) ) { $tabix_args .= ' .'; }
-            $cmd = "tabix $tabix_args |";
+            $cmd = "$$self{tabix} $tabix_args |";
             $$self{check_exit_status} = 1;
         }
         open($$self{fh},$cmd) or $self->throw("$cmd: $!");
@@ -2152,7 +2154,7 @@ sub get_chromosomes
 {
     my ($self) = @_;
     if ( !$$self{file} ) { $self->throw(qq[The parameter "file" not set.\n]); }
-    my (@out) = `tabix -l $$self{file}`;
+    my (@out) = `$$self{tabix} -l $$self{file}`;
     if ( $? ) 
     { 
         $self->throw(qq[The command "tabix -l $$self{file}" exited with an error. Is the file tabix indexed?\n]); 

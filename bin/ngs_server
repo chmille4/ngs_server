@@ -5,7 +5,7 @@
   
   $:.unshift File.join(path, "../lib")
 
-  require 'Ngs_server'
+  require 'ngs_server'
   
 
   require 'ngs_server/version'
