@@ -9,19 +9,19 @@
 2. run "gem install ngs_server" in the terminal
 
 ## usage
-      // in terminal
+      # in terminal
       ngs_server --help
       
-      // add data directories to be served
+      # add data directories to be served
       ngs_server add path-to-dir
       
-      // start server
+      # start server
       ngs_server start
       ngs_server start --port 3000
-      // daemonize
+      # daemonize
       ngs_server start -d
       
-      // stop server if daemonized
+      # stop server if daemonized
       ngs_server stop
       
 
@@ -40,3 +40,24 @@ see available data sources
 invoke file: genotypes.vcf.gz with coordinates 1073361 to 1238825 on chromosome 1
 
 * http://0.0.0.0:4569/json/vcf/genotypes.vcf.gz?segment=1&min=1073361&max=1238825
+
+
+## Example
+    # create data directory
+    mkdir example-data && cd example-data
+    
+    # download bam file and index
+    wget http://bioinformatics.bc.edu/marthlab/download/small.bam
+    wget http://bioinformatics.bc.edu/marthlab/download/small.bam.bai
+    
+    # add data directory to ngs_server to be served
+    cd ../
+    ngs_server add example-data/
+    
+    # start server
+    ngs_server start -p 4569
+    
+    # paste following url in browser
+    # to download region of bam as json in web browser
+    # http://0.0.0.0:4569/json/bam/example-data/small.bam?min=14596532&max=14699000&segment=22
+    
