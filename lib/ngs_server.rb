@@ -7,6 +7,7 @@ require 'json'
 
 class MyNgsServer < Sinatra::Base
 
+  use Rack::Deflater
   set :server, 'thin'
 
   gempath = File.join(File.dirname(__FILE__), "../")
