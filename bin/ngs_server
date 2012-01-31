@@ -14,6 +14,10 @@
 
   options = {}
   command = ""
+  extensions = {
+    ".bam" => "bam",
+    ".gz"  => "vcf"
+  }
 
   optparse = OptionParser.new do |opts|
     opts.banner = "Usage: ngs_server start|stop|add [options]"
@@ -41,6 +45,15 @@
         options[:daemonize] = "-d";
     end
     
+    opts.on( '-r', '--rover REGION:MIN:MAX', 'returns link to Rover to display all matches' ) do |f|
+        options[:rover] = f;
+    end
+    
+    options[:serverurl] = "http://0.0.0.0:" + options[:port]
+    opts.on( '-s', '--serverurl URL', 'the url for the server to access the data' ) do |f|
+        options[:serverurl] = f;
+    end
+    
     # opts.on( '-C', '--config', 'configuration file for Thin server' ) do |f|
     #     options[:config] = f;
     # end
@@ -49,8 +62,7 @@
   
   optparse.parse!
   command = ARGV[0]
-  
-  
+
 
   if (command == 'start')
    # ngsrun options
@@ -66,15 +78,65 @@
    #NgsServer.run!
   elsif (command == 'stop')
     rackup_path = File.join(path, '../lib/config.ru')
+    puts "Stopping Ngs_Server ..."
     `thin -R #{rackup_path} -p #{options[:port]} stop`
   elsif (command == 'add')
-    # source_path = File.absolute_path(ARGV[1])
-    # puts source_path
-    # file_name = File.basename(source_path)
-    # puts file_name
-    # data_dir_path = File.join(path,'../data', file_name)
-    # puts data_dir_path
-    # `ln -s #{source_path} #{data_dir_path}`
     ngsadd ARGV[1]
+  elsif (command == 'find')
+
+    data_path = File.join(path, '../data')
+    
+    if ARGV[1]
+      dir = ARGV[1]
+    else
+      dir = "."
+    end
+    
+    if ARGV[2]
+      expr = ARGV[2]
+    else
+      expr = "*"
+    end
+
+    Dir.chdir(data_path)
+    sources = `find -L #{dir} -iname "#{expr}"`.split("\n")
+    
+    curated_sources = Array.new
+    sources.each do |source|
+      if (File.extname(source) == ".bam" || File.extname(File.basename(source, ".gz")) == ".vcf")
+        curated_sources.push source
+      end
+    end
+    
+
+    if (!options[:rover].nil?)
+      rover_url = "http://chmille4.github.com/Rover/index.html"
+      
+      names_url = "names=" + curated_sources.join(',')
+      
+      data_urls = []
+      curated_sources.each do |s|
+        str = options[:serverurl] + "/json/"
+        str += extensions[ File.extname(s) ] + "/"
+        str += s        
+        data_urls.push(str)
+      end
+      data_url =  "urls=" + data_urls.join(',')
+      
+      segment, min, max = options[:rover].split(":")
+      segment_url = "segment=" + segment
+      min_url = "min=" + min
+      max_url = "max=" + max
+      
+      display_url = "display=" + Array.new(curated_sources.size) { |i| "collapse" }.join(',')
+      types_url = "types=" + Array.new(curated_sources.size) { |i| "" }.join(',')
+      
+      params_url = [names_url, data_url, segment_url, min_url, max_url, display_url, types_url].join('&')
+      
+      puts rover_url + "?" + params_url
+    else
+      puts curated_sources
+    end
+    
   end
   

@@ -40,14 +40,19 @@ class MyNgsServer < Sinatra::Base
 
   end
 
-  get '/json/sources/:extension' do
+  get '/json/sources/*' do |path|
 
     # turn off json content type so a preflight cors doesn't need to be done
     # content_type :json
     response['Access-Control-Allow-Origin'] = '*';
 
+    extension = File.basename(path)
+    dirpath = File.dirname(path)    
+    
+    private_dir = "private"
+
     # invoke with eg: base_url/json/vcf/file=ALL.2of4intersection.20100804.sites.vcf.gz?min=6992179&max=6992190&segment=1
-    list  = `find -L #{datapath} -name '*#{params['extension']}' | awk -F#{datapath}/ '{print $2}'`
+    list  = `find -L #{datapath}/#{dirpath} -not \\( -name private -prune \\) -name '*#{extension}' | awk -F#{datapath}/ '{print $2}'`
     list.split("\n").to_json
 
   end

@@ -41,6 +41,19 @@ invoke file: genotypes.vcf.gz with coordinates 1073361 to 1238825 on chromosome 
 
 * http://0.0.0.0:4569/json/vcf/genotypes.vcf.gz?segment=1&min=1073361&max=1238825
 
+## find data
+
+find data sources that have been added
+
+    # ngs_server find <dir> <regex>
+    ngs_server find . *  # return everything
+    
+    # return found data as link to view in Rover
+    ngs_server find . "*bam" -r 1:1:100000
+    
+    # specify server url that ngs_server is running on
+    # so the correct links to sources will be generated
+    ngs_server find . "*bam" -r 1:1:100000 -s http://mydataserver.com
 
 ## Example
     # create data directory
@@ -55,9 +68,23 @@ invoke file: genotypes.vcf.gz with coordinates 1073361 to 1238825 on chromosome 
     ngs_server add example-data/
     
     # start server
-    ngs_server start -p 4569
+    ngs_server start -d
     
+    # find data
+    ngs_server find . "*bam"
+    
+    # generate Rover url to view data
+    # -r chr:min:max
+    ngs_server find . "*bam" -r 22:14596532:14699000
+    # and then just paste the generate url into a browser
+    
+    # to make things quicker you can open the link from
+    # the command line in Google Chrome (Mac only, but linux is similar)
+    open -a "Google Chrome" $(ngs_server find . "*bam" -r 22:14596532:14699000)
+    
+    # to see the pure json that ngs_server sends
     # paste following url in browser
-    # to download region of bam as json in web browser
     # http://0.0.0.0:4569/json/bam/example-data/small.bam?min=14596532&max=14699000&segment=22
     
+    # stop server
+    ngs_server stop
