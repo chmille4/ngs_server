@@ -20,7 +20,7 @@
   }
 
   optparse = OptionParser.new do |opts|
-    opts.banner = "Usage: ngs_server start|stop|add [options]"
+    opts.banner = "Usage: ngs_server start|stop|add|find [options]"
     
     opts.on( '-h', '--help', 'display this screen' ) do
         # puts "ngs_server command options"
@@ -32,6 +32,7 @@
         puts "\tngs_server start -p 4567 -d"
         puts "\tngs_server add path_to_data_directory"
         puts "\tngs_server stop"
+        puts "\tngs_server find dir \"*bam\""
         exit
     end
     
